@@ -1,15 +1,15 @@
 package tests;
 
+import baseClasses.UiBaseTest;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
-import org.testng.IRetryAnalyzer;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import utilities.BaseTest;
+import baseClasses.BaseTest;
 import utilities.ManageObjects;
 
-public class HomePageTest extends BaseTest {
+public class HomePageTest extends UiBaseTest
+{
 
     private ManageObjects manageObjects;
     private WebDriver driver;

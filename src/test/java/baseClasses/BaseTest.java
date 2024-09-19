@@ -1,4 +1,4 @@
-package utilities;
+package baseClasses;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -12,40 +12,15 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import utilities.TestProperties;
 
 public class BaseTest {
 
-    private static final ThreadLocal<WebDriver> webDriverThreadLocal = new ThreadLocal<>();
     private final Logger logger = LogManager.getLogger(this.getClass());
     private static ExtentReports extentReports = null;
     private static ExtentSparkReporter extentSparkReporter = null;
     private static ThreadLocal<ExtentTest> extentTest = new ThreadLocal<>();
     private String testName;
-
-    public void initiateDriver() {
-        WebDriver driver;
-
-        switch (TestProperties.getProperty("browser")) {
-            case "chrome":
-                driver = new ChromeDriver();
-                driver.manage().window().maximize();
-                webDriverThreadLocal.set(driver);
-                break;
-            default:
-                driver = new EdgeDriver();
-                driver.manage().window().maximize();
-                webDriverThreadLocal.set(driver);
-                break;
-        }
-
-    }
-
-    public WebDriver getWebDriver() {
-        if (webDriverThreadLocal.get() == null)
-            initiateDriver();
-
-        return webDriverThreadLocal.get();
-    }
 
     public void log(String message) {
         logger.log(Level.INFO, message);
